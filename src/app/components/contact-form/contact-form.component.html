@@ -3,36 +3,51 @@
         <div class="col-md-6">
             <div class="p-3 border bg-light">
                 <h2>Contact Form</h2>
-                <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm.value)">
+                <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="contact.name" required>
+                        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="contact.name" required #name="ngModel">
+                        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                            Ingrese nombre
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="contact.email" required>
+                        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="contact.email" required #email="ngModel">
+                        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                            Ingrese email
+                        </div>
                     </div>
                     <div class="mb-3 form-check">
                         <label for="dep" class="form-label">Departamento</label>
-                        <select class="form-select" id="dep" name="dep" [(ngModel)]="contact.dep" required>
+                        <select class="form-select" id="dep" name="dep" [(ngModel)]="contact.dep" required #dep="ngModel">
                             <option selected disabled>- Seleccionar -</option>
                             <option value="1">Ventas</option>
                             <option value="2">TI</option>
                             <option value="3">Finanzas</option>
                         </select>
+                        <div [hidden]="dep.valid || dep.pristine" class="alert alert-danger">
+                            Seleccione opción
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Comentarios</label>
-                        <textarea class="form-control" name="coment" id="coment" row="2" [(ngModel)]="contact.coment" required></textarea>
+                        <textarea class="form-control" name="coment" id="coment" row="2" [(ngModel)]="contact.coment" required #coment="ngModel"></textarea>
+                        <div [hidden]="coment.valid || coment.pristine" class="alert alert-danger">
+                            Ingrese comentario
+                        </div>
                     </div>
                     <div class="mb-3 form-check d-flex justify-content-center">
-                        <input type="checkbox" class="form-check-input" id="check" name="check"  [(ngModel)]="contact.check" required>
+                        <input type="checkbox" class="form-check-input" id="check" name="check"  [(ngModel)]="contact.check" required #check="ngModel">
                         &nbsp;
                         <label class="form-check-label" for="check" id="check">Terminos y condiciones</label>
+                        <div [hidden]="check.valid || check.pristine" class="alert alert-danger">
+                            Acepte terminos y condiciones
+                        </div>
                     </div>
                     <hr>
                     <div class="d-grid gap-2">
-                        <button class="btn btn-primary" type="button" type="submit">Enviar</button> 
+                        <button class="btn btn-primary" type="button" type="submit" [disabled]="contactForm.invalid">Enviar</button> 
                     </div> 
                 </form>
             </div>

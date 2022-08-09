@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Contact } from '../../models/contactform';
 
 @Component({
@@ -17,8 +18,11 @@ export class ContactFormComponent implements OnInit {
   }
 
 
-  onSubmit(values: any):void {
-    console.log(values);
+  onSubmit(form: NgForm):void {
+    if(form.valid){
+      console.log(form);
+      form.resetForm();
+    }
   }
 
 }
