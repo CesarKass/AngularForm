@@ -12,4 +12,9 @@ export class ContactFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  onSubmit(values: any):void {
+    console.log(values);
+  }
+
 }

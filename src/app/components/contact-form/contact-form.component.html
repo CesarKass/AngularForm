@@ -3,19 +3,19 @@
         <div class="col-md-6">
             <div class="p-3 border bg-light">
                 <h2>Contact Form</h2>
-                <form>
+                <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm.value)">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="name" name="name">
+                        <input type="text" class="form-control" id="name" name="name" ngModel required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="email" name="email">
+                        <input type="text" class="form-control" id="email" name="email" ngModel required>
                     </div>
                     <div class="mb-3 form-check">
                         <label for="dep" class="form-label">Departamento</label>
-                        <select class="form-select form-select-sm" id="dep" name="dep">
-                            <option selected>- Seleccionar -</option>
+                        <select class="form-select" id="dep" name="dep" ngModel required>
+                            <option selected disabled>- Seleccionar -</option>
                             <option value="1">Ventas</option>
                             <option value="2">TI</option>
                             <option value="3">Finanzas</option>
@@ -23,19 +23,26 @@
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Comentarios</label>
-                        <textarea class="form-control" name="coment" id="coment" row="2"></textarea>
+                        <textarea class="form-control" name="coment" id="coment" row="2" ngModel required></textarea>
                     </div>
                     <div class="mb-3 form-check d-flex justify-content-center">
-                        <input type="checkbox" class="form-check-input" id="check">
+                        <input type="checkbox" class="form-check-input" id="check" name="check"  ngModel required>
                         &nbsp;
-                        <label class="form-check-label" for="check" id="check" name="check">Terminos y condiciones</label>
+                        <label class="form-check-label" for="check" id="check">Terminos y condiciones</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <hr>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" type="button" type="submit">Enviar</button> 
+                    </div> 
                 </form>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="p-3 border bg-light">Datos</div>
+            <div class="p-3 border bg-light">
+                Datos
+                <br>
+                {{contactForm.value | json}}
+            </div>
         </div>
     </div>
 </div>
